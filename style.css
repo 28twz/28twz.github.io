@@ -1,7 +1,7 @@
 /* =========================================
    VARIABLES
 ========================================= */
-
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&display=swap');
 :root {
 
     --background: #f5f7fa;
@@ -134,11 +134,9 @@ section {
 
     gap: 9px;
 
-    font-size: 21px;
-
-    font-weight: 750;
-
-    letter-spacing: -0.5px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
 
     color: var(--text);
 
@@ -1912,53 +1910,61 @@ section {
     display: none;
 }
 
+#contact {
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 40px;
+}
+
+.cv-download {
+    position: absolute;
+    top: 50px;
+    right: max(25px, calc((100% - var(--max-width)) / 2));
+}
+
+.cv-download a {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.cv-download a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
 
 /* =========================================
    FOOTER
 ========================================= */
 
 .footer {
-
     max-width: none;
-
     margin: 0;
 
     padding:
-        42px
+        35px
         max(25px, calc((100% - var(--max-width)) / 2))
-        22px;
+        12px;
 
     background: #ffffff;
-
-    border-top:
-        1px solid #e2e7ed;
+    border-top: 1px solid #e2e7ed;
 
     color: var(--text-light);
-
     font-size: 12px;
 }
 
-
-/* =========================================
-   FOOTER CONTENT
-========================================= */
-
 .footer-content {
-
     max-width: var(--max-width);
-
     margin: auto;
 
     display: grid;
-
-    grid-template-columns:
-        1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 
     align-items: start;
-
     gap: 50px;
 
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 }
 
 
@@ -1978,13 +1984,14 @@ section {
 
     color: var(--text);
 
-    font-size: 19px;
+    font-size: 14px;
 
-    font-weight: 750;
+    font-weight: 500;
 
-    letter-spacing: -0.5px;
+    letter-spacing: -0.3px;
 
     margin-bottom: 8px;
+	font-family: "Orbitron", sans-serif;
 }
 
 
@@ -2144,7 +2151,7 @@ section {
     padding-top: 16px;
 
     border-top:
-        1px solid #edf0f4;
+        10px solid #1769e0;
 
     display: flex;
 
@@ -2153,6 +2160,7 @@ section {
     color: #8a94a3;
 
     font-size: 10px;
+	align-items: center;
 }
 
 
@@ -2656,4 +2664,358 @@ html.dark .parcours-column + .parcours-column {
         text-align: center;
     }
 
+}
+/* =========================================
+   CONTACT — BULLES FLOTTANTES
+========================================= */
+
+/*
+   La zone des réseaux devient une petite
+   zone de déplacement pour les bulles.
+*/
+
+.contact-socials {
+    position: relative;
+    min-height: 330px;
+}
+
+
+/*
+   Les cinq bulles sont sorties du flux normal
+   pour pouvoir se déplacer librement.
+*/
+
+.contact-links {
+    position: absolute;
+
+    top: -40px;
+    right: 35px;
+    bottom: 10px;
+    left: 35px;
+
+    display: block;
+
+    pointer-events: none;
+}
+
+
+/*
+   Chaque lien devient une bulle indépendante.
+*/
+
+.contact-links .contact-card {
+    position: absolute;
+
+    width: 58px;
+    height: 58px;
+
+    min-width: 58px;
+    min-height: 58px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    pointer-events: auto;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    color: #dbe5f5;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.18),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    will-change: transform;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/*
+   On neutralise l'ancien hover.
+   Le JavaScript gère le déplacement.
+*/
+
+.contact-links .contact-card:hover {
+    transform: none;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+
+/*
+   Taille des logos.
+*/
+
+.contact-links .contact-icon,
+.contact-links .contact-icon svg {
+    width: 25px;
+    height: 25px;
+}
+
+
+/* =========================================
+   COULEURS DES RÉSEAUX
+========================================= */
+
+
+/*
+   EMAIL
+*/
+
+.contact-links .contact-card:nth-child(1):hover {
+    color: #4da3ff;
+
+    background:
+        rgba(23, 105, 224, 0.20);
+
+    border-color:
+        rgba(77, 163, 255, 0.75);
+
+    box-shadow:
+        0 0 25px rgba(23, 105, 224, 0.35),
+        inset 0 1px 1px rgba(255, 255, 255, 0.16);
+}
+
+
+/*
+   GITHUB
+*/
+
+.contact-links .contact-card:nth-child(2):hover {
+    color: #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    border-color:
+        rgba(255, 255, 255, 0.65);
+
+    box-shadow:
+        0 0 25px rgba(255, 255, 255, 0.18),
+        inset 0 1px 1px rgba(255, 255, 255, 0.16);
+}
+
+
+/*
+   LINKEDIN
+*/
+
+.contact-links .contact-card:nth-child(3):hover {
+    color: #0a66c2;
+
+    background:
+        rgba(10, 102, 194, 0.22);
+
+    border-color:
+        rgba(10, 102, 194, 0.85);
+
+    box-shadow:
+        0 0 25px rgba(10, 102, 194, 0.40),
+        inset 0 1px 1px rgba(255, 255, 255, 0.16);
+}
+
+
+/*
+   INSTAGRAM
+*/
+
+.contact-links .contact-card:nth-child(4):hover {
+    color: #ff4f9a;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(131, 58, 180, 0.28),
+            rgba(225, 48, 108, 0.28),
+            rgba(253, 29, 29, 0.22),
+            rgba(252, 175, 69, 0.20)
+        );
+
+    border-color:
+        rgba(255, 79, 154, 0.80);
+
+    box-shadow:
+        0 0 28px rgba(225, 48, 108, 0.38),
+        inset 0 1px 1px rgba(255, 255, 255, 0.16);
+}
+
+
+/*
+   FACEBOOK
+*/
+
+.contact-links .contact-card:nth-child(5):hover {
+    color: #1877f2;
+
+    background:
+        rgba(24, 119, 242, 0.22);
+
+    border-color:
+        rgba(24, 119, 242, 0.85);
+
+    box-shadow:
+        0 0 25px rgba(24, 119, 242, 0.40),
+        inset 0 1px 1px rgba(255, 255, 255, 0.16);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .contact-socials {
+        min-height: 270px;
+    }
+
+    .contact-links {
+        top: 28px;
+    }
+
+    .contact-links .contact-card {
+        width: 52px;
+        height: 52px;
+
+        min-width: 52px;
+        min-height: 52px;
+    }
+
+    .contact-links .contact-icon,
+    .contact-links .contact-icon svg {
+        width: 23px;
+        height: 23px;
+    }
+
+}
+
+
+/*
+   Très petits écrans.
+*/
+
+@media (max-width: 480px) {
+
+    .contact-socials {
+        min-height: 250px;
+    }
+
+    .contact-links .contact-card {
+        width: 48px;
+        height: 48px;
+
+        min-width: 48px;
+        min-height: 48px;
+    }
+
+    .contact-links .contact-icon,
+    .contact-links .contact-icon svg {
+        width: 21px;
+        height: 21px;
+    }
+
+}
+/* =========================================
+   CONTACT — ESPACEMENT GLOBAL
+========================================= */
+
+/*
+   Réduit uniquement l'espace vertical
+   de toute la section Contact.
+*/
+
+#contact {
+    padding-top: 50px;
+    padding-bottom: 40px;
+}
+
+
+/*
+   Réduit l'espace entre le titre CONTACT
+   et le contenu de la section.
+*/
+
+#contact .section-title {
+    margin-bottom: 35px;
+}
+
+
+/*
+   Rapproche légèrement le contenu
+   gauche et la zone des bulles.
+*/
+
+#contact .contact-grid {
+    gap: 45px;
+}
+
+
+/* =========================================
+   CONTACT — MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+    #contact {
+        padding-top: 55px;
+        padding-bottom: 55px;
+    }
+
+    #contact .section-title {
+        margin-bottom: 30px;
+    }
+
+    #contact .contact-grid {
+        gap: 25px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    #contact {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    #contact .section-title {
+        margin-bottom: 25px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    #contact {
+        padding-top: 45px;
+        padding-bottom: 45px;
+    }
+
+}
+/* =========================================
+   À PROPOS — ESPACEMENT
+========================================= */
+
+#apropos {
+    padding-top: 110px;
+    padding-bottom: 110px;
 }
