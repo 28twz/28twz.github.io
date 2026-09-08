@@ -1544,7 +1544,22 @@ section {
 
     font-weight: 600;
 }
+.company-name {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
 
+.company-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.company-name h3 {
+    margin: 0;
+}
 
 .experience-body {
 
@@ -2560,7 +2575,20 @@ html.dark .parcours-column + .parcours-column {
 
         flex-direction: column;
     }
+	.company-name {
+		align-items: center;
+	}
 
+	.company-logo {
+		width: 42px;
+		height: 42px;
+	}
+
+	.experience-meta {
+		width: 100%;
+		justify-content: flex-start;
+		margin-top: 5px;
+	}
 
     .experience-body {
 
@@ -3018,4 +3046,49 @@ html.dark .parcours-column + .parcours-column {
 #apropos {
     padding-top: 110px;
     padding-bottom: 110px;
+}
+/* =========================================
+   CV — AJUSTEMENT MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+    .cv-download {
+        top: 20px;
+    }
+}
+/* =========================================
+   STAGE À VENIR — FÉVRIER 2027
+========================================= */
+
+.experience-upcoming {
+    border: 1px dashed #cbd5e2;
+    opacity: 0.85;
+}
+
+.experience-upcoming:hover {
+    opacity: 1;
+}
+
+.experience-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.experience-status {
+    padding: 5px 10px;
+
+    border: 1px solid #dceaff;
+    border-radius: 20px;
+
+    background: #edf4ff;
+
+    color: var(--primary);
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    white-space: nowrap;
 }
