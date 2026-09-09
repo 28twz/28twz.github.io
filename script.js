@@ -942,3 +942,451 @@ if (
     animateBubbles();
 
 }
+/* =========================================
+   BARRE DE PROGRESSION DU SCROLL
+========================================= */
+
+const scrollProgressBar =
+    document.querySelector(
+        ".scroll-progress-bar"
+    );
+
+
+function updateScrollProgress() {
+
+    if (!scrollProgressBar) {
+        return;
+    }
+
+
+    const scrollTop =
+        window.scrollY;
+
+
+    const documentHeight =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+
+    const progress =
+        documentHeight > 0
+            ? (scrollTop / documentHeight) * 100
+            : 0;
+
+
+    scrollProgressBar.style.width =
+        `${progress}%`;
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    updateScrollProgress,
+    {
+        passive: true
+    }
+);
+
+
+window.addEventListener(
+    "load",
+    updateScrollProgress
+);
+/* =========================================
+   ANIMATIONS D'APPARITION AU SCROLL
+========================================= */
+
+const revealElements =
+    document.querySelectorAll(
+        `
+        .section-title,
+        .about-text,
+        .highlight,
+        .skill-card,
+        .project-card,
+        .stage-card,
+        .objective-card,
+        .contact-card
+        `
+    );
+
+
+revealElements.forEach(
+    (element, index) => {
+
+        element.classList.add(
+            "reveal"
+        );
+
+
+        /*
+           Petit décalage entre les éléments
+           d'une même zone.
+        */
+
+        element.style.transitionDelay =
+            `${(index % 3) * 80}ms`;
+
+    }
+);
+
+
+const revealObserver =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "reveal-visible"
+                        );
+
+
+                        /*
+                           L'animation ne se
+                           rejoue pas inutilement.
+                        */
+
+                        revealObserver.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+
+revealElements.forEach(
+    element => {
+
+        revealObserver.observe(
+            element
+        );
+
+    }
+);
+/* =========================================
+   TIMELINE ANIMÉE
+========================================= */
+
+const timelines =
+    document.querySelectorAll(
+        ".parcours-timeline"
+    );
+
+
+const timelineObserver =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        const timeline =
+                            entry.target;
+
+
+                        /*
+                           Animation de la ligne.
+                        */
+
+                        timeline.classList.add(
+                            "timeline-visible"
+                        );
+
+
+                        /*
+                           Animation progressive
+                           des éléments.
+                        */
+
+                        const timelineItems =
+                            timeline.querySelectorAll(
+                                ".parcours-item"
+                            );
+
+
+                        timelineItems.forEach(
+                            (
+                                item,
+                                index
+                            ) => {
+
+                                setTimeout(
+                                    () => {
+
+                                        item.classList.add(
+                                            "timeline-item-visible"
+                                        );
+
+                                    },
+                                    250 +
+                                    index * 220
+                                );
+
+                            }
+                        );
+
+
+                        timelineObserver.unobserve(
+                            timeline
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: 0.25
+        }
+    );
+
+
+timelines.forEach(
+    timeline => {
+
+        timelineObserver.observe(
+            timeline
+        );
+
+    }
+);
+/* =========================================
+   TERMINAL ANIMÉ
+========================================= */
+
+const terminal =
+    document.querySelector(
+        ".terminal"
+    );
+
+
+let terminalHasPlayed =
+    false;
+
+
+function typeTerminalText(
+    element,
+    text,
+    speed
+) {
+
+    return new Promise(
+        resolve => {
+
+            let index = 0;
+
+
+            function type() {
+
+                if (
+                    index < text.length
+                ) {
+
+                    element.textContent +=
+                        text.charAt(
+                            index
+                        );
+
+
+                    index++;
+
+
+                    setTimeout(
+                        type,
+                        speed
+                    );
+
+                } else {
+
+                    resolve();
+
+                }
+
+            }
+
+
+            type();
+
+        }
+    );
+
+}
+
+
+async function startTerminalAnimation() {
+
+    if (
+        terminalHasPlayed
+    ) {
+        return;
+    }
+
+
+    terminalHasPlayed =
+        true;
+
+
+    const commands =
+        terminal.querySelectorAll(
+            ".terminal-command"
+        );
+
+
+    const results =
+        terminal.querySelectorAll(
+            ".terminal-result"
+        );
+
+
+    /*
+       On vide les commandes
+       avant de commencer.
+    */
+
+    commands.forEach(
+        command => {
+
+            command.textContent = "";
+
+        }
+    );
+
+
+    /*
+       On cache les résultats.
+    */
+
+    results.forEach(
+        result => {
+
+            result.classList.remove(
+                "terminal-result-visible"
+            );
+
+        }
+    );
+
+
+    /*
+       Animation commande
+       puis résultat.
+    */
+
+    for (
+        let i = 0;
+        i < commands.length;
+        i++
+    ) {
+
+        const command =
+            commands[i];
+
+
+        const result =
+            results[i];
+
+
+        const text =
+            command.dataset.text;
+
+
+        await typeTerminalText(
+            command,
+            text,
+            65
+        );
+
+
+        await new Promise(
+            resolve => {
+
+                setTimeout(
+                    resolve,
+                    250
+                );
+
+            }
+        );
+
+
+        result.textContent =
+            result.dataset.result;
+
+
+        result.classList.add(
+            "terminal-result-visible"
+        );
+
+
+        await new Promise(
+            resolve => {
+
+                setTimeout(
+                    resolve,
+                    300
+                );
+
+            }
+        );
+
+    }
+
+}
+/* Déclenchement du terminal */
+
+if (terminal) {
+
+    const terminalObserver =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(
+                    entry => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            startTerminalAnimation();
+
+                            terminalObserver.unobserve(
+                                terminal
+                            );
+
+                        }
+
+                    }
+                );
+
+            },
+            {
+                threshold: 0.35
+            }
+        );
+
+
+    terminalObserver.observe(
+        terminal
+    );
+
+}

@@ -5,10 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <meta
         name="description"
@@ -26,7 +23,9 @@
 
 
 <body>
-
+<div class="scroll-progress">
+    <div class="scroll-progress-bar"></div>
+</div>
 
     <!-- =========================================
          NAVIGATION
@@ -241,62 +240,99 @@
 
                 <div class="terminal-content">
 
-                    <div>
-                        <span class="terminal-green">
-                            admin@portfolio
-                        </span>:~$
-                        whoami
-                    </div>
+					<div class="terminal-line">
 
-                    <div class="terminal-result">
-                        Enzo Rabet
-                    </div>
+						<span class="terminal-green">
+							admin@portfolio
+						</span>:~$
 
+						<span
+							class="terminal-command"
+							data-text="whoami"
+						></span>
 
-                    <div>
-                        <span class="terminal-green">
-                            admin@portfolio
-                        </span>:~$
-                        formation
-                    </div>
-
-                    <div class="terminal-result">
-                        BTS SIO SISR
-                    </div>
+					</div>
 
 
-                    <div>
-                        <span class="terminal-green">
-                            admin@portfolio
-                        </span>:~$
-                        mkdir
-                    </div>
-
-                    <div class="terminal-result">
-                        Systèmes & Réseaux
-                    </div>
+					<div
+						class="terminal-result"
+						data-result="Enzo Rabet"
+					></div>
 
 
-                    <div>
-                        <span class="terminal-green">
-                            admin@portfolio
-                        </span>:~$
-                        nslookup
-                    </div>
+					<div class="terminal-line">
 
-                    <div class="terminal-result">
-                        Deuxième année
-                    </div>
+						<span class="terminal-green">
+							admin@portfolio
+						</span>:~$
+
+						<span
+							class="terminal-command"
+							data-text="formation"
+						></span>
+
+					</div>
 
 
-                    <div>
-                        <span class="terminal-green">
-                            admin@portfolio
-                        </span>:~$
-                        _
-                    </div>
+					<div
+						class="terminal-result"
+						data-result="BTS SIO SISR"
+					></div>
 
-                </div>
+
+					<div class="terminal-line">
+
+						<span class="terminal-green">
+							admin@portfolio
+						</span>:~$
+
+						<span
+							class="terminal-command"
+							data-text="mkdir"
+						></span>
+
+					</div>
+
+
+					<div
+						class="terminal-result"
+						data-result="Systèmes & Réseaux"
+					></div>
+
+
+					<div class="terminal-line">
+
+						<span class="terminal-green">
+							admin@portfolio
+						</span>:~$
+
+						<span
+							class="terminal-command"
+							data-text="nslookup"
+						></span>
+
+					</div>
+
+
+					<div
+						class="terminal-result"
+						data-result="Deuxième année"
+					></div>
+
+
+					<div class="terminal-line terminal-last-line">
+
+						<span class="terminal-green">
+							admin@portfolio
+						</span>:~$
+
+						<span
+							class="terminal-final-cursor"
+						>_</span>
+
+					</div>
+
+				</div>
 
             </div>
 
@@ -1808,6 +1844,36 @@
 </a>
 
     </div>
+	<!-- =========================================
+     SIGNATURE INSIGHT
+========================================= -->
+
+<div class="insight-signature">
+
+    <div class="insight-signature-line"></div>
+
+    <div class="insight-signature-content">
+
+        <span class="insight-signature-name">
+            INSIGHT
+        </span>
+
+        <p class="insight-signature-quote">
+            « Comprendre au-delà de ce qui est visible. »
+        </p>
+
+        <p class="insight-signature-text">
+            Le nom Insight évoque la capacité à comprendre,
+            analyser et aller au-delà de ce qui apparaît au
+            premier regard. Une vision qui reflète ma manière
+            d'aborder l'informatique : comprendre les systèmes
+            pour mieux les construire, les administrer et les
+            faire évoluer.
+        </p>
+
+    </div>
+
+</div>
 
 </footer>
 
